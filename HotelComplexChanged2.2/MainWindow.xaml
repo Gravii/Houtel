@@ -1,0 +1,33 @@
+﻿<Window x:Class="HotelComplexChanged2._2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HotelComplexChanged2._2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="/Отель1.jpg"/>
+        </Grid.Background>
+
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180"/>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Menu Grid.Column="0" Background="#FF383636" FontFamily="Bahnschrift SemiCondensed" FontSize="18" Grid.RowSpan="2" HorizontalAlignment="Left">
+
+            <MenuItem Header="База Клиентов" Command="{Binding ClientsBase}" Margin="0,120,0,10" Foreground="White" />
+            <MenuItem Header="База Номеров" Command="{Binding NumbersBase}" Margin="2,10,0,10" Foreground="White" />
+            <MenuItem Header="Сотрудники" Command="{Binding StaffBase}" Margin="7,10,0,10" Foreground="White" />
+            <MenuItem Header="Бронирование" Command="{Binding ReserBase}" Margin="0,10,0,10" Foreground="White" />
+            <MenuItem Header="База Уборки" Command="{Binding CleaningBase}" Margin="10,10,0,10" Foreground="White" />
+        </Menu>
+        <Frame x:Name="frame" Content="{Binding CurrentPage}" Grid.Row="1" NavigationUIVisibility="Hidden" Margin="140,0,0,0" Grid.ColumnSpan="2"/>
+    </Grid>
+</Window>

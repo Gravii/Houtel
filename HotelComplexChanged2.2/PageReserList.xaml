@@ -1,0 +1,65 @@
+﻿<Page x:Class="HotelComplexChanged2._2.PageReserList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:HotelComplexChanged2._2"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageReserList">
+
+    <Grid Background="#FF383636">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ListView Grid.Row="1" ItemsSource="{Binding Reservs}" SelectedItem="{Binding SelectedReserv}" Grid.RowSpan="2">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Имя" DisplayMemberBinding="{Binding FirstName}" Width="Auto"/>
+                    <GridViewColumn Header="Фамилия" DisplayMemberBinding="{Binding SecondName}" Width="Auto"/>
+                    <GridViewColumn Header="Отчество" DisplayMemberBinding="{Binding LastName}" Width="Auto"/>
+                    <GridViewColumn Header="Паспортные данные" DisplayMemberBinding="{Binding PassportData}" Width="Auto"/>
+                    <GridViewColumn Header="Телефон" DisplayMemberBinding="{Binding Telephone}" Width="Auto"/>
+                    <GridViewColumn Header="Номер" DisplayMemberBinding="{Binding GetRoom.Number}" Width="Auto" />
+                    <GridViewColumn Header="Дата заселения" DisplayMemberBinding="{Binding TimeEntry, StringFormat='{}{0:dd.MM.yyyy}'}" Width="Auto"/>
+                    <GridViewColumn Header="Дата выселения" DisplayMemberBinding="{Binding TimeExit, StringFormat='{}{0:dd.MM.yyyy}'}" Width="Auto"/>
+                </GridView>
+            </ListView.View>
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Обновить" Command="{Binding Refresh}" />
+                </ContextMenu>
+            </ListView.ContextMenu>
+        </ListView>
+        <TextBlock Grid.ColumnSpan="2" Text="Бронирование номеров" Background="White"/>
+        <StackPanel Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="Имя Клиента:" Background="White"/>
+            <TextBox Text="{Binding SelectedReserv.FirstName}" Background="White"/>
+            <TextBlock Text="Фамилия Клиента:" Background="White"/>
+            <TextBox Text="{Binding SelectedReserv.SecondName}" Background="White"/>
+            <TextBlock Text="Отчество Клиента:" Background="White"/>
+            <TextBox Text="{Binding SelectedReserv.LastName}" Background="White"/>
+            <TextBlock Text="Телефон:" Background="White" />
+            <TextBox Text="{Binding SelectedReserv.Telephone}" Background="White"/>
+            <TextBlock Text="Пасп. данные:" Background="White" />
+            <TextBox Text="{Binding SelectedReserv.PassportData}" Background="White" />
+            <TextBlock Text="Номер:" Background="White" />
+            <ComboBox ItemsSource="{Binding Rooms}" SelectedItem="{Binding SelectedReserv.GetRoom}" DisplayMemberPath="Number" Background="White"/>
+            <TextBlock Text="Дата заселения:" Background="White"/>
+            <DatePicker SelectedDate="{Binding SelectedReserv.TimeEntry}" Background="White"/>
+            <TextBlock Text="Дата Выселения:" Background="White" />
+            <DatePicker SelectedDate="{Binding SelectedReserv.TimeExit}" Background="White"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <Button Content="Добавить" Command="{Binding AddReserv}" />
+            <Button Content="Сохранить" Command="{Binding SaveReserv}" Margin="0,3,0,3"/>
+            <Button Content="Удалить" Command="{Binding RemoveReserv}"/>
+        </StackPanel>
+    </Grid>
+</Page>
